@@ -4,6 +4,8 @@ exports.handler = async (event) => {
     //GET_METHOD
     if (event.httpMethod === 'GET') {
 
+        //TODO add in Param to pick different requests
+
         //null check on api Params
         if(event.queryStringParameters != null){
             
@@ -11,12 +13,14 @@ exports.handler = async (event) => {
             //check for case of the keys as lowercase 'speed' fails request
             
             //set params to var so we can parce them into numbers
-            let dataPointSpeed = parseInt(event["queryStringParameters"]["Speed"]) 
+            let dataPointSpeed = parseInt(event["queryStringParameters"]["Speed"])
             let dataPointDistance = parseInt(event["queryStringParameters"]["Distance"])
 
             if(dataPointSpeed >= 1 && dataPointDistance >= 1){
+
                 let dataTime = dataPointDistance / dataPointSpeed
                 let dataSeconds = dataTime * 3600 | 0
+
 
                 let jsonBody = JSON.stringify({
                     message: "Request aproved",
