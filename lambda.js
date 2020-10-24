@@ -21,14 +21,17 @@ exports.handler = async (event) => {
 
             if(dataPointSpeed >= 1 && dataPointDistance >= 1){
 
+                // starborn convets its time to seconds and rounds down
                 let dataTime = dataPointDistance / dataPointSpeed
-                let dataSeconds = dataTime * 3600 | 0
+                let dataSeconds = dataTime * 3600 | 0 // <-- faster math.floor
+
+
 
                 let jsonBody = JSON.stringify({
                     message: "Request aproved",
                     speed: dataPointSpeed,
                     distance: dataPointDistance,
-                    TimeToHex: `${dataSeconds}s`
+                    TimeToHex: `${dataSeconds / 3600 | 0}:${dataSeconds % 3600 / 60 | 0}:${dataSeconds % 60 | 0} HH:MM:SS`
                 })
 
                 res = {
