@@ -2,6 +2,6 @@
     "httpMethod": "GET",
     "queryStringParameters": {
         "Distance": "537",
-        "Speed": "35"
+        "speed": "33"
     }
 }

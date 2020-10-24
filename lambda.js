@@ -15,21 +15,20 @@ exports.handler = async (event) => {
             //check for case of the keys as lowercase 'speed' fails request
             
             //set params to var so we can parce them into numbers
-            let dataPointSpeed = parseInt(event["queryStringParameters"]["Speed"])
-            let dataPointDistance = parseInt(event["queryStringParameters"]["Distance"])
+            //using logic to get around case in json keys 'Speed' vs 'speed'
+            let dataPointSpeed = ("Speed" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Speed"]) :parseInt(event["queryStringParameters"]["speed"])
+            let dataPointDistance = ("Distance" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Distance"]) : parseInt(event["queryStringParameters"]["Distance"])
 
             if(dataPointSpeed >= 1 && dataPointDistance >= 1){
 
                 let dataTime = dataPointDistance / dataPointSpeed
                 let dataSeconds = dataTime * 3600 | 0
 
-
                 let jsonBody = JSON.stringify({
                     message: "Request aproved",
                     speed: dataPointSpeed,
                     distance: dataPointDistance,
-                    TimeToHex: `${dataSeconds}s`,
-                    EventLog: event
+                    TimeToHex: `${dataSeconds}s`
                 })
 
                 res = {
