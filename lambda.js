@@ -1,6 +1,8 @@
+
 exports.handler = async (event) => {
     let res = {}
-    
+
+    let eventData = event
     //GET_METHOD
     if (event.httpMethod === 'GET') {
 
@@ -34,6 +36,7 @@ exports.handler = async (event) => {
                     statusCode: 200,
                     body: jsonBody
                 }
+
                  console.log(jsonBody)
                 
             }else if (dataPointSpeed < 1){
