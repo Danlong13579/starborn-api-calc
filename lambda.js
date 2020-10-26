@@ -1,7 +1,16 @@
 
 exports.handler = async (event) => {
-    let res = {}
+    //let res = {}
 
+    
+    let MatchString = (text) => {
+        let jsonData = JSON.stringify(event["queryStringParameters"])
+        let regexTest = new RegExp(text, "i")
+        let res = regexTest.exec(jsonData)
+
+        return res[0]
+    }
+    
     let eventData = event
     //GET_METHOD
     if (event.httpMethod === 'GET') {
@@ -16,8 +25,10 @@ exports.handler = async (event) => {
             
             //set params to var so we can parce them into numbers
             //using logic to get around case in json keys 'Speed' vs 'speed'
-            let dataPointSpeed = ("Speed" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Speed"]) :parseInt(event["queryStringParameters"]["speed"])
-            let dataPointDistance = ("Distance" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Distance"]) : parseInt(event["queryStringParameters"]["Distance"])
+            //let dataPointSpeed = ("Speed" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Speed"]) :parseInt(event["queryStringParameters"]["speed"])
+            //let dataPointDistance = ("Distance" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Distance"]) : parseInt(event["queryStringParameters"]["Distance"])
+            let dataPointSpeed = parseInt(event["queryStringParameters"][MatchString("speed")])
+            let dataPointDistance = parseInt(event["queryStringParameters"][MatchString("distance")])
 
             if(dataPointSpeed >= 1 && dataPointDistance >= 1){
 
@@ -39,8 +50,8 @@ exports.handler = async (event) => {
                     body: jsonBody
                 }
 
-                 console.log(jsonBody)
-                
+                console.log(jsonBody)
+                //console.log(matchedSpeed)
             }else if (dataPointSpeed < 1){
                 res = {
                     statusCode: 400,
