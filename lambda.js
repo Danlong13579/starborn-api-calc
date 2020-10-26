@@ -7,7 +7,6 @@ exports.handler = async (event) => {
         let jsonData = JSON.stringify(event["queryStringParameters"])
         let regexTest = new RegExp(text, "i")
         let res = regexTest.exec(jsonData)
-
         return res[0]
     }
     
@@ -16,14 +15,14 @@ exports.handler = async (event) => {
     if (event.httpMethod === 'GET') {
 
         //TODO add in Param to pick different requests
-
+        
         //null check on api Params
         if(event.queryStringParameters != null){
             
             //TODO
             //check for case of the keys as lowercase 'speed' fails request
             
-            //set params to var so we can parce them into numbers
+            //set params to var so we can parse them into numbers
             //using logic to get around case in json keys 'Speed' vs 'speed'
             //let dataPointSpeed = ("Speed" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Speed"]) :parseInt(event["queryStringParameters"]["speed"])
             //let dataPointDistance = ("Distance" in eventData.queryStringParameters) ? parseInt(event["queryStringParameters"]["Distance"]) : parseInt(event["queryStringParameters"]["Distance"])
