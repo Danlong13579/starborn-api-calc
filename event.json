@@ -2,6 +2,7 @@
     "httpMethod": "GET",
     "queryStringParameters": {
         "DiStAnCE": "29",
-        "sPeED": "37"
+        "sPeED": "37",
+        "cords": "[127, 101] [217, 20]"
     }
 }
