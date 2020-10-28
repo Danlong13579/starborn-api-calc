@@ -13,12 +13,7 @@ let MatchCords = (cord) => {
 }
 
 let HexDist = (cords) => {
-    let valOne = Math.abs(cords[1] - cords[3])
-    let valTwo = Math.abs(cords[1] + cords[0] - cords[3] - cords[2])
-    let valThree = Math.abs(cords[0] - cords[2])
-
-    let answer = valOne + valTwo + valThree
-    return answer / 2
+    return (Math.abs(cords[1] - cords[3]) + Math.abs(cords[1] + cords[0] - cords[3] - cords[2]) + Math.abs(cords[0] - cords[2])) / 2
 }
 
 module.exports = { MatchString, MatchCords, HexDist }

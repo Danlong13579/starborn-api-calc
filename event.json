@@ -4,5 +4,7 @@
         "DiStAnCE": "29",
         "sPeED": "37",
         "cords": "[127, 101] [217, 20]"
-    }
+    },
+    "body": "{\r\n    \"speed\": 34,\r\n    \"distance\": \"87\"\r\n}",
+    "isBase64Encoded": false
 }
