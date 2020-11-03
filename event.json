@@ -1,9 +1,22 @@
 {
     "httpMethod": "GET",
     "queryStringParameters": {
-        "DiStAnCE": "29",
-        "sPeED": "37",
-        "cords": "[127, 101] [217, 20]"
+        "distance": "39",
+        "speed": "12",
+        "cords": "[-29, 379] [-161, 315]",
+        "arrivalTime":[],
+        "hasCords": "true",
+        "hasArrivalTime": "true"
+    },
+    "multiValueQueryStringParameters": {
+        "Distance": [
+            "371"
+        ],
+        "Speed": [
+            "49",
+            "35",
+            "22"
+        ]
     },
     "body": "{\r\n    \"speed\": 34,\r\n    \"distance\": \"87\"\r\n}",
     "isBase64Encoded": false
