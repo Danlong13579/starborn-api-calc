@@ -2,7 +2,6 @@ const F = require('./functions')
 
 exports.handler = async (event) => {
     let res = {}
-    let jsonBody = ""
 
     let dataPointSpeed = parseInt(event["queryStringParameters"][F.MatchString("speed", event["queryStringParameters"])])
     let dataPointDistance = parseInt(event["queryStringParameters"][F.MatchString("distance", event["queryStringParameters"])])
@@ -14,13 +13,22 @@ exports.handler = async (event) => {
     if (event.httpMethod != null) {
         if(event.httpMethod === "GET"){
             if(event.queryStringParameters != null){
-                res = {
-                    statusCode: 200,
-                    body: JSON.stringify({
-                        "message": "Request accepted",
-                        "eventParams": event.queryStringParameters,
-                        "eventParamsArray": event.multiValueQueryStringParameters
-                    })
+                if (event["queryStringParameters"]['hasCords'] == null || event["queryStringParameters"]['hasCords'] === "false" || event["queryStringParameters"]['hasCords'] === "FALSE"){
+                    if(event["queryStringParameters"]['hasArrivalTime'] == null || event["queryStringParameters"]['hasArrivalTime'] === "false" || event["queryStringParameters"]['hasArrivalTime'] === "FALSE"){
+                        console.log('no cord, no arrival time')
+                        
+                    }
+                    else{
+                        console.log('no cords, has arival time')
+                    }
+                }
+                else{
+                    if(event["queryStringParameters"]['hasArrivalTime'] == null || event["queryStringParameters"]['hasArrivalTime'] === "false" || event["queryStringParameters"]['hasArrivalTime'] === "FALSE"){
+                        console.log('has cords, no arival time')
+                    }
+                    else{
+                        console.log('has cords, has arival time')
+                    }
                 }
                 return res
             }

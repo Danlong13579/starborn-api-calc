@@ -5,8 +5,8 @@
         "speed": "12",
         "cords": "[-29, 379] [-161, 315]",
         "arrivalTime":[],
-        "hasCords": "true",
-        "hasArrivalTime": "true"
+        "hasArrivalTime": "false",
+        "hasCords" : "false"
     },
     "multiValueQueryStringParameters": {
         "Distance": [
