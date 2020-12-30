@@ -2,6 +2,7 @@ const F = require('./functions')
 
 exports.handler = async (event) => {
     let res = {}
+    let message = ""
 
     let dataPointSpeed = parseInt(event["queryStringParameters"][F.MatchString("speed", event["queryStringParameters"])])
     let dataPointDistance = parseInt(event["queryStringParameters"][F.MatchString("distance", event["queryStringParameters"])])
@@ -15,8 +16,27 @@ exports.handler = async (event) => {
             if(event.queryStringParameters != null){
                 if (event["queryStringParameters"]['hasCords'] == null || event["queryStringParameters"]['hasCords'] === "false" || event["queryStringParameters"]['hasCords'] === "FALSE"){
                     if(event["queryStringParameters"]['hasArrivalTime'] == null || event["queryStringParameters"]['hasArrivalTime'] === "false" || event["queryStringParameters"]['hasArrivalTime'] === "FALSE"){
-                        console.log('no cord, no arrival time')
-                        
+
+                        let speed = parseInt(event["queryStringParameters"][F.MatchString("speed", event["queryStringParameters"])])
+                        let distance = parseInt(event["queryStringParameters"][F.MatchString("distance", event["queryStringParameters"])])
+
+                        if(speed >= 1){
+                            res = {
+                                statusCode: 400,
+                                body: JSON.stringify({
+                                    "message": "speed param must be grater than 12"
+                                })
+                            }
+                            console.log(res)
+                        }
+                        else{
+                            res = {
+                                statusCode: 400,
+                                body: JSON.stringify({
+                                    "message": "speed param must be grater than 0"
+                                })
+                            }
+                        }
                     }
                     else{
                         console.log('no cords, has arival time')
